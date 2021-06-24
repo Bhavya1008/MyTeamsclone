@@ -17,7 +17,7 @@ navigator.mediaDevices.getUserMedia({
     addVideoStream(MyVideo,stream)   //adding stream to my video
 
     myPeer.on('call',call => { 
-        console.log('answered the call')            //THIS IS NOT BEING TRIGGERED
+        console.log('answered the call')            
         call.answer(stream)  
     })
     socket.on('user-connected',userId =>{   //user is connected send our stream to that userid
@@ -45,7 +45,7 @@ function connectToNewUser(userId, stream){
     const call = myPeer.call(userId,stream)
     const video = document.createElement('video')
     console.log('connectedtonewuser')
-    call.on('stream',userVideoStream =>{
+    call.on('stream',userVideoStream =>{                                          //This is not working
         addVideoStream(video,userVideoStream)
     })
     call.on('close', () => {
